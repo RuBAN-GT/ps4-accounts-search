@@ -1,0 +1,55 @@
+.main.container {
+  padding: 5em 0 3em;
+}
+
+.ui.search.form {
+  display: flex;
+  align-items: center;
+
+  .field {
+    flex: 0;
+
+    margin-left: 1em;
+  }
+  .field.body {
+    flex: 1;
+
+    margin-left: 0;
+  }
+}
+
+.response.pages.segment {
+  display: none;
+}
+
+.nopadded {
+  padding: 0 !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .response.pages.segment {
+    display: block;
+  }
+  .default.pages.segment {
+    display: none;
+  }
+
+  .ui.fixed.main.menu {
+    .item > span {
+      display: none;
+    }
+  }
+  .ui.search.form {
+    display: block;
+
+    .field {
+      flex: 0;
+
+      margin-left: 0;
+
+      .button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+= form_tag posts_path,
+  :method => :get,
+  :class => 'ui search big form' do
+  .field.body
+    = label_tag 'filter[body]', 'Запрос'
+    = search_field_tag 'filter[body]',
+      filter_value(:body),
+      :placeholder => 'Введите запрос...'
+
+  .field.source
+    = label_tag 'filter[body]', 'Ресурс'
+    = source_type_select_tag 'filter[source_type]',
+      filter_value(:source_type)
+
+  .field.official
+    = label_tag 'filter[body]', 'Организаторы'
+    = official_select_tag 'filter[official]',
+      filter_value(:official)
+
+  .field.go
+    %button.ui.positive.icon.big.button
+      %i.search.icon

@@ -1,0 +1,52 @@
+!!!
+%html
+  %head
+    %title PS4Search
+
+    = csrf_meta_tags
+
+    %meta{:name => 'robots', :content => 'noindex, nofollow'}
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
+
+    = stylesheet_link_tag 'application',
+      :media => 'all',
+      'data-turbolinks-track': 'reload'
+
+    = javascript_include_tag 'application',
+      'data-turbolinks-track': 'reload'
+
+    = javascript_include_tag 'web/application',
+      'data-turbolinks-track': 'reload'
+
+  %body
+    .ui.fixed.inverted.big.main.menu
+      .ui.container
+        = link_to root_path,
+          :title => 'Поиск аккаунтов',
+          :class => 'header item' do
+          %i.icon.game
+          %span Поиск аккаунтов
+
+        .right.menu
+          = link_to posts_path,
+            :title => 'Записи',
+            :class => :item do
+            %i.search.icon
+            %span Записи
+
+          .ui.item.dropdown{:title => 'Источники'}
+            %i.star.icon
+            %span Источники
+            %i.dropdown.icon
+
+            .menu
+              - Source.all.each do |source|
+                = link_to source.name,
+                  source.url,
+                  :class => :item,
+                  :target => :_blank
+
+    .ui.main.container
+      = render '/web/layouts/shared/search'
+
+      = yield

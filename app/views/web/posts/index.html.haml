@@ -1,0 +1,59 @@
+- if @posts.any?
+
+  .ui.basic.center.aligned.nopadded.segment
+    = page_entries_info @posts
+
+  = will_paginate @posts,
+    :param_name => 'page[number]',
+    :outer_window => 1,
+    :inner_window => 1,
+    :class => 'default pages'
+  = will_paginate @posts,
+    :param_name => 'page[number]',
+    :page_links => false,
+    :class => 'response pages'
+
+  .ui.divided.items
+    - @posts.each do |post|
+      .item
+        .content
+          .meta
+            = link_to post.author_url,
+              :class => "ui user icon label",
+              :target => :_blank do
+              %i.user.icon
+              = post.author_name
+
+            написал
+
+            %span.date= post.posted_at.strftime('%Y/%m/%d %H:%M')
+
+          .description= post.body.html_safe
+
+          .extra
+            = link_to post.url,
+              :class => 'ui blue label',
+              :target => :_blank,
+              :title => post.source_uid do
+              %i.main.forward.icon
+              Перейти
+
+            = link_to post.source.name,
+              post.source.url,
+              :class => "ui #{post.source.official ? 'green' : 'grey'} label",
+              :target => :_blank
+
+  = will_paginate @posts,
+    :param_name => 'page[number]',
+    :outer_window => 1,
+    :inner_window => 1,
+    :class => 'default pages'
+  = will_paginate @posts,
+    :param_name => 'page[number]',
+    :page_links => false,
+    :class => 'response pages'
+
+  .ui.basic.center.aligned.nopadded.segment
+    = page_entries_info @posts
+- else
+  .ui.message По данному запросу ничего не найдено.
